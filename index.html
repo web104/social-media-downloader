@@ -3,8 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Social Media Video Downloader - YouTube, Instagram, TikTok, Facebook</title>
     <meta name="description" content="Free online video downloader for YouTube, Instagram, TikTok, Facebook, Twitter and more. Download videos, audio, and thumbnails instantly.">
+    <meta name="keywords" content="video downloader, YouTube downloader, Instagram downloader, TikTok downloader, Facebook video download, Twitter video download">
+    <title id="page-title">Social Media Video Downloader - Free Online Tool</title>
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Social Media Video Downloader">
+    <meta property="og:description" content="Download videos from YouTube, Instagram, TikTok, Facebook, Twitter/X and 1000+ websites">
+    
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Social Media Video Downloader">
+    
+    <!-- Dynamic AdSense Code Injection -->
+    <script id="adsense-script"></script>
+    
     <style>
         * {
             margin: 0;
@@ -12,69 +26,132 @@
             box-sizing: border-box;
         }
 
+        :root {
+            --primary: #667eea;
+            --secondary: #764ba2;
+            --dark: #1a1a2e;
+            --light: #ffffff;
+            --gray: #f5f5f5;
+            --text: #333;
+        }
+
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
             min-height: 100vh;
+            color: var(--text);
+        }
+
+        /* Header Ad Banner */
+        .ad-banner-top {
+            background: #fff;
+            padding: 10px;
+            text-align: center;
+            min-height: 90px;
             display: flex;
-            flex-direction: column;
             align-items: center;
-            padding: 20px;
+            justify-content: center;
+            border-bottom: 2px solid #e0e0e0;
+        }
+
+        .header {
+            background: white;
+            padding: 20px 0;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+        }
+
+        .site-title h1 {
+            font-size: 1.8em;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 5px;
+        }
+
+        .site-title p {
+            font-size: 0.9em;
+            color: #666;
+        }
+
+        nav a {
+            margin-left: 20px;
+            text-decoration: none;
+            color: var(--text);
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--primary);
         }
 
         .container {
-            max-width: 800px;
-            width: 100%;
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .main-card {
             background: white;
             border-radius: 20px;
             box-shadow: 0 20px 60px rgba(0,0,0,0.3);
             padding: 40px;
-            margin: 20px 0;
-        }
-
-        h1 {
-            color: #333;
-            text-align: center;
-            margin-bottom: 10px;
-            font-size: 2.5em;
-        }
-
-        .subtitle {
-            text-align: center;
-            color: #666;
             margin-bottom: 30px;
-            font-size: 1.1em;
+        }
+
+        .card-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .card-header h2 {
+            font-size: 2.2em;
+            margin-bottom: 10px;
         }
 
         .supported-platforms {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            gap: 15px;
-            margin-bottom: 30px;
+            gap: 10px;
+            margin: 20px 0;
         }
 
         .platform-badge {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
             padding: 8px 16px;
             border-radius: 20px;
-            font-size: 0.9em;
-            font-weight: 500;
+            font-size: 0.85em;
         }
 
         .input-section {
-            margin-bottom: 30px;
-        }
-
-        .input-group {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 15px;
+            margin-bottom: 25px;
         }
 
         input[type="text"] {
-            flex: 1;
+            width: 100%;
             padding: 15px;
             border: 2px solid #e0e0e0;
             border-radius: 10px;
@@ -84,46 +161,44 @@
 
         input[type="text"]:focus {
             outline: none;
-            border-color: #667eea;
+            border-color: var(--primary);
         }
 
         .format-selector {
-            display: flex;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
             gap: 10px;
-            flex-wrap: wrap;
-            margin-bottom: 15px;
+            margin: 20px 0;
         }
 
         .format-btn {
-            flex: 1;
-            min-width: 120px;
-            padding: 12px 20px;
+            padding: 12px;
             border: 2px solid #e0e0e0;
             background: white;
             border-radius: 10px;
             cursor: pointer;
-            font-size: 1em;
             transition: all 0.3s;
+            font-size: 0.95em;
         }
 
         .format-btn:hover {
-            border-color: #667eea;
+            border-color: var(--primary);
             transform: translateY(-2px);
         }
 
         .format-btn.active {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
-            border-color: #667eea;
+            border-color: var(--primary);
         }
 
         .action-buttons {
-            display: flex;
-            gap: 10px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
         }
 
         button {
-            flex: 1;
             padding: 15px 30px;
             border: none;
             border-radius: 10px;
@@ -134,7 +209,7 @@
         }
 
         .btn-primary {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
         }
 
@@ -145,7 +220,7 @@
 
         .btn-secondary {
             background: #f5f5f5;
-            color: #333;
+            color: var(--text);
         }
 
         .btn-secondary:hover {
@@ -169,7 +244,7 @@
 
         .spinner {
             border: 4px solid #f3f3f3;
-            border-top: 4px solid #667eea;
+            border-top: 4px solid var(--primary);
             border-radius: 50%;
             width: 40px;
             height: 40px;
@@ -207,19 +282,13 @@
         }
 
         .video-details h3 {
-            color: #333;
             margin-bottom: 10px;
-        }
-
-        .video-details p {
-            color: #666;
-            margin-bottom: 5px;
         }
 
         .download-link {
             display: inline-block;
             padding: 12px 30px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
             color: white;
             text-decoration: none;
             border-radius: 10px;
@@ -245,29 +314,76 @@
             display: block;
         }
 
-        .footer {
-            text-align: center;
-            color: white;
-            margin-top: 30px;
-            font-size: 0.9em;
+        /* Sidebar Ad */
+        .sidebar-ad {
+            position: fixed;
+            right: 20px;
+            top: 200px;
+            width: 160px;
+            background: white;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
-        .footer a {
-            color: white;
-            text-decoration: underline;
+        .footer {
+            background: white;
+            padding: 40px 20px;
+            margin-top: 60px;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .footer-section a {
+            display: block;
+            color: #666;
+            text-decoration: none;
+            margin-bottom: 10px;
+            transition: color 0.3s;
+        }
+
+        .footer-section a:hover {
+            color: var(--primary);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding: 20px;
+            background: #f5f5f5;
+            margin-top: 20px;
         }
 
         @media (max-width: 768px) {
-            .container {
+            .header-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            nav {
+                margin-top: 15px;
+            }
+
+            nav a {
+                margin: 0 10px;
+            }
+
+            .main-card {
                 padding: 20px;
             }
 
-            h1 {
-                font-size: 1.8em;
-            }
-
-            .input-group {
-                flex-direction: column;
+            .action-buttons {
+                grid-template-columns: 1fr;
             }
 
             .video-info {
@@ -277,29 +393,66 @@
             .video-thumbnail {
                 width: 100%;
             }
+
+            .sidebar-ad {
+                display: none;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="container">
-        <h1>🎬 Video Downloader</h1>
-        <p class="subtitle">Download videos from any social media platform</p>
+    <!-- Top Ad Banner -->
+    <div class="ad-banner-top">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-xxxxxxxxxxxxxxxx"
+             data-ad-slot="xxxxxxxxxx"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+    </div>
 
-        <div class="supported-platforms">
-            <span class="platform-badge">📺 YouTube</span>
-            <span class="platform-badge">📷 Instagram</span>
-            <span class="platform-badge">🎵 TikTok</span>
-            <span class="platform-badge">👥 Facebook</span>
-            <span class="platform-badge">🐦 Twitter/X</span>
-            <span class="platform-badge">➕ More</span>
+    <!-- Header -->
+    <header class="header">
+        <div class="header-content">
+            <div class="logo-section">
+                <img id="site-logo" class="logo" src="" alt="Logo" style="display:none;">
+                <div class="site-title">
+                    <h1 id="site-name">Social Media Downloader</h1>
+                    <p id="site-tagline">Download videos from anywhere</p>
+                </div>
+            </div>
+            <nav>
+                <a href="/">Home</a>
+                <a href="/about">About</a>
+                <a href="/privacy">Privacy</a>
+                <a href="/terms">Terms</a>
+                <a href="/contact">Contact</a>
+            </nav>
         </div>
+    </header>
 
-        <div class="input-section">
-            <div class="input-group">
+    <!-- Main Content -->
+    <div class="container">
+        <div class="main-card">
+            <div class="card-header">
+                <h2>🎬 Video Downloader</h2>
+                <p>Download videos from any social media platform</p>
+            </div>
+
+            <div class="supported-platforms">
+                <span class="platform-badge">📺 YouTube</span>
+                <span class="platform-badge">📷 Instagram</span>
+                <span class="platform-badge">🎵 TikTok</span>
+                <span class="platform-badge">👥 Facebook</span>
+                <span class="platform-badge">🐦 Twitter/X</span>
+                <span class="platform-badge">➕ 1000+ Sites</span>
+            </div>
+
+            <div class="input-section">
                 <input 
                     type="text" 
                     id="videoUrl" 
-                    placeholder="Paste video URL here (e.g., https://youtube.com/watch?v=...)"
+                    placeholder="Paste video URL here..."
                     autocomplete="off"
                 >
             </div>
@@ -307,39 +460,99 @@
             <div class="format-selector">
                 <button class="format-btn active" data-format="best">🎬 Best Quality</button>
                 <button class="format-btn" data-format="video">📹 Video Only</button>
-                <button class="format-btn" data-format="audio">🎵 Audio Only</button>
+                <button class="format-btn" data-format="audio">🎵 Audio (MP3)</button>
                 <button class="format-btn" data-format="thumbnail">🖼️ Thumbnail</button>
             </div>
 
             <div class="action-buttons">
-                <button class="btn-primary" id="downloadBtn">Download</button>
+                <button class="btn-primary" id="downloadBtn">Download Now</button>
                 <button class="btn-secondary" id="infoBtn">Get Info</button>
             </div>
-        </div>
 
-        <div class="loading" id="loading">
-            <div class="spinner"></div>
-            <p>Processing your request...</p>
-        </div>
+            <div class="loading" id="loading">
+                <div class="spinner"></div>
+                <p>Processing your request...</p>
+            </div>
 
-        <div class="error-message" id="errorMessage"></div>
+            <div class="error-message" id="errorMessage"></div>
 
-        <div class="result-section" id="resultSection">
-            <div class="video-info" id="videoInfo"></div>
-            <div id="downloadSection"></div>
+            <div class="result-section" id="resultSection">
+                <div class="video-info" id="videoInfo"></div>
+                <div id="downloadSection"></div>
+            </div>
         </div>
     </div>
 
-    <div class="footer">
-        <p>Free & Open Source Social Media Downloader</p>
-        <p>Supports 1000+ websites via <a href="https://github.com/yt-dlp/yt-dlp" target="_blank">yt-dlp</a></p>
+    <!-- Sidebar Ad (Desktop only) -->
+    <div class="sidebar-ad">
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-xxxxxxxxxxxxxxxx"
+             data-ad-slot="xxxxxxxxxx"
+             data-ad-format="auto"></ins>
     </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>About</h3>
+                <a href="/about">About Us</a>
+                <a href="/contact">Contact</a>
+                <a href="/privacy">Privacy Policy</a>
+            </div>
+            <div class="footer-section">
+                <h3>Legal</h3>
+                <a href="/terms">Terms of Service</a>
+                <a href="/disclaimer">Disclaimer</a>
+                <a href="/dmca">DMCA</a>
+            </div>
+            <div class="footer-section">
+                <h3>Supported Platforms</h3>
+                <p>YouTube, Instagram, TikTok, Facebook, Twitter/X, Vimeo, Dailymotion, and 1000+ more websites</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 <span id="footer-site-name">Social Media Downloader</span>. All rights reserved.</p>
+            <p>Powered by <a href="https://github.com/yt-dlp/yt-dlp" target="_blank">yt-dlp</a></p>
+        </div>
+    </footer>
 
     <script>
-        // Configuration - Update this with your Render backend URL after deployment
-        const API_BASE_URL = 'YOUR_RENDER_BACKEND_URL_HERE';
-        
+        // Configuration
+        const API_BASE_URL = window.location.origin;
         let selectedFormat = 'best';
+        let siteConfig = {};
+        let userClickCount = 0;
+
+        // Load site configuration
+        async function loadConfig() {
+            try {
+                const response = await fetch(`${API_BASE_URL}/api/config`);
+                const data = await response.json();
+                siteConfig = data;
+                
+                // Update site branding
+                document.getElementById('site-name').textContent = data.website_name || 'Social Media Downloader';
+                document.getElementById('site-tagline').textContent = data.tagline || 'Download videos from anywhere';
+                document.getElementById('footer-site-name').textContent = data.website_name || 'Social Media Downloader';
+                document.getElementById('page-title').textContent = data.website_name || 'Social Media Downloader';
+                
+                // Update logo if exists
+                if (data.logo_url) {
+                    const logo = document.getElementById('site-logo');
+                    logo.src = data.logo_url;
+                    logo.style.display = 'block';
+                }
+                
+                // Inject AdSense code
+                if (data.adsense_code) {
+                    document.getElementById('adsense-script').innerHTML = data.adsense_code;
+                }
+            } catch (error) {
+                console.error('Failed to load config:', error);
+            }
+        }
 
         // Format selector
         document.querySelectorAll('.format-btn').forEach(btn => {
@@ -350,11 +563,19 @@
             });
         });
 
-        // Download button
+        // Download button with monetization
         document.getElementById('downloadBtn').addEventListener('click', async () => {
             const url = document.getElementById('videoUrl').value.trim();
             if (!url) {
                 showError('Please enter a valid URL');
+                return;
+            }
+
+            // Monetization logic
+            if (siteConfig.monetization_enabled && userClickCount < siteConfig.monetization_clicks) {
+                userClickCount++;
+                window.open(siteConfig.monetization_link, '_blank');
+                showError(`Please complete the offer (${userClickCount}/${siteConfig.monetization_clicks}) and click download again`);
                 return;
             }
 
@@ -363,15 +584,10 @@
             hideResult();
 
             try {
-                const response = await fetch(`${API_BASE_URL}/download`, {
+                const response = await fetch(`${API_BASE_URL}/api/download`, {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        url: url,
-                        format: selectedFormat
-                    })
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ url: url, format: selectedFormat })
                 });
 
                 const data = await response.json();
@@ -381,6 +597,7 @@
                 }
 
                 displayDownloadResult(data);
+                userClickCount = 0; // Reset after successful download
             } catch (error) {
                 showError(error.message);
             } finally {
@@ -401,14 +618,10 @@
             hideResult();
 
             try {
-                const response = await fetch(`${API_BASE_URL}/info`, {
+                const response = await fetch(`${API_BASE_URL}/api/info`, {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
-                    body: JSON.stringify({
-                        url: url
-                    })
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ url: url })
                 });
 
                 const data = await response.json();
@@ -455,9 +668,6 @@
                     <a href="${data.data.download_url}" class="download-link" target="_blank">
                         📥 Download ${data.type === 'audio' ? 'Audio' : 'Video'}
                     </a>
-                    <p style="margin-top: 10px; color: #666; font-size: 0.9em;">
-                        Note: Click the link to start download. Some videos may open in a new tab.
-                    </p>
                 `;
             }
 
@@ -475,14 +685,10 @@
                     <p><strong>Uploader:</strong> ${escapeHtml(data.uploader)}</p>
                     <p><strong>Duration:</strong> ${formatDuration(data.duration)}</p>
                     <p><strong>Views:</strong> ${formatNumber(data.view_count)}</p>
-                    <p><strong>Available Formats:</strong> ${data.formats.length}</p>
                 </div>
             `;
 
-            downloadSection.innerHTML = `
-                <p style="color: #666;">Select a format above and click "Download" to get the video.</p>
-            `;
-
+            downloadSection.innerHTML = `<p>Select a format and click "Download Now" to get the video.</p>`;
             document.getElementById('resultSection').classList.add('active');
         }
 
@@ -534,6 +740,9 @@
                 document.getElementById('downloadBtn').click();
             }
         });
+
+        // Initialize
+        loadConfig();
     </script>
 </body>
 </html>

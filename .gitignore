@@ -42,3 +42,9 @@ Thumbs.db
 # Environment variables
 .env
 .env.local
+
+# Admin config
+admin_config.json
+
+# Cache
+cache/
